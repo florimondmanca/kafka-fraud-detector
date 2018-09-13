@@ -2,6 +2,8 @@
 
 This is your first real-world streaming application with Kafka and Python — a simple real-time fraud detection system.
 
+This is the supporting repository for the blog post: [Building Your First Real-World Kafka Streaming Application in Python](https://blog.florimondmanca.com/building-your-first-real-world-kafka-streaming-application-in-python).
+
 ## Install
 
 This fraud detection system is fully containerised. You will need [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/) to run it, but no other installation step is required.
