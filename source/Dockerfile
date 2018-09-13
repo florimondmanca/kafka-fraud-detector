@@ -2,8 +2,8 @@ FROM python:3.6
 
 WORKDIR /usr/app
 
-ADD ./requirements ./
+ADD ./requirements.txt ./
 RUN pip install -r requirements.txt
-ADD ./app.py ./
+ADD ./ ./
 
 CMD ["python", "app.py"]

@@ -1,6 +1,7 @@
 """Generates fake transactions into a Kafka topic."""
 
 import os
+from time import sleep
 import json
 
 from kafka import KafkaProducer
@@ -22,4 +23,4 @@ if __name__ == '__main__':
         transaction: dict = Transaction.random().serialize()
         producer.send(TRANSACTIONS_TOPIC, value=transaction)
         print(transaction)
-        os.sleep(SLEEP_TIME)
+        sleep(SLEEP_TIME)

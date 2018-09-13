@@ -7,6 +7,10 @@ from typing import NamedTuple
 account_chars: str = digits + ascii_letters
 
 
+def _random_account_id():
+    return ''.join(choices(account_chars, k=12))
+
+
 class Transaction(NamedTuple):
     """Represents a transaction."""
 
@@ -20,10 +24,10 @@ class Transaction(NamedTuple):
         """Create a random transaction."""
         return cls(
             # Fake source and target account numbers
-            source=choices(account_chars, k=12),
-            target=choices(account_chars, k=12),
+            source=_random_account_id(),
+            target=_random_account_id(),
             # Random amount between 1.00 and 1000.00
-            amount=randint(100, 1000000) / 100,
+            amount=randint(100, 100000) / 100,
             currency='EUR',
         )
 
