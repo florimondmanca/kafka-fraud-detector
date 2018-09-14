@@ -10,6 +10,7 @@ KAFKA_BROKER_URL = os.environ.get('KAFKA_BROKER_URL')
 
 
 def is_suspicious(transaction: dict) -> bool:
+    # TODO add better rules and/or AI superpowers
     return transaction['amount'] >= 900
 
 
@@ -20,6 +21,6 @@ if __name__ == '__main__':
         value_deserializer=lambda value: json.loads(value),
     )
     for message in consumer:
-        transaction = message.value
+        transaction: dict = message.value
         if is_suspicious(transaction):
             print({'type': 'potential_fraud', 'transaction': transaction})
