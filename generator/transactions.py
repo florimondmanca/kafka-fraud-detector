@@ -2,34 +2,25 @@
 
 from random import choices, randint
 from string import ascii_letters, digits
-from typing import NamedTuple
 
 account_chars: str = digits + ascii_letters
 
 
-def _random_account_id():
+def _random_account_id() -> str:
     return ''.join(choices(account_chars, k=12))
 
 
-class Transaction(NamedTuple):
-    """Represents a transaction."""
+def _random_amount() -> float:
+    """Return a random amount between 1.00 and 1000.00."""
+    return randint(100, 1000000) / 100
 
-    source: str
-    target: str
-    amount: float
-    currency: str
 
-    @classmethod
-    def random(cls):
-        """Create a random transaction."""
-        return cls(
-            # Fake source and target account numbers
-            source=_random_account_id(),
-            target=_random_account_id(),
-            # Random amount between 1.00 and 1000.00
-            amount=randint(100, 100000) / 100,
-            currency='EUR',
-        )
-
-    def serialize(self) -> str:
-        return self._asdict()
+def create_random_transaction() -> dict:
+    """Create a fake, randomised transaction."""
+    return {
+        'source': _random_account_id(),
+        'target': _random_account_id(),
+        'amount': _random_amount(),
+        # Keep it simple: it's all euros
+        'currency': 'EUR',
+    }

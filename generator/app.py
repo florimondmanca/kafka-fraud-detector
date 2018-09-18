@@ -5,7 +5,7 @@ from time import sleep
 import json
 
 from kafka import KafkaProducer
-from transactions import Transaction
+from transactions import create_random_transaction
 
 TRANSACTIONS_TOPIC = os.environ.get('TRANSACTIONS_TOPIC')
 KAFKA_BROKER_URL = os.environ.get('KAFKA_BROKER_URL')
@@ -20,7 +20,7 @@ if __name__ == '__main__':
         value_serializer=lambda value: json.dumps(value).encode(),
     )
     while True:
-        transaction: dict = Transaction.random().serialize()
+        transaction: dict = create_random_transaction()
         producer.send(TRANSACTIONS_TOPIC, value=transaction)
         print(transaction)
         sleep(SLEEP_TIME)
