@@ -2,8 +2,8 @@ version: '3'
 
 services:
 
-  source:
-    build: ./source
+  generator:
+    build: ./generator
     environment:
       KAFKA_BROKER_URL: broker:9092
       TRANSACTIONS_TOPIC: transactions
