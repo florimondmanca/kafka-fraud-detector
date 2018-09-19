@@ -22,5 +22,5 @@ if __name__ == '__main__':
     while True:
         transaction: dict = create_random_transaction()
         producer.send(TRANSACTIONS_TOPIC, value=transaction)
-        print(transaction)
+        print(transaction)  # DEBUG
         sleep(SLEEP_TIME)
