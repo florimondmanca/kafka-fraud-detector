@@ -1,8 +1,8 @@
 # Kafka Fraud Detector
 
-This is your first real-world streaming application with Kafka and Python — a simple real-time fraud detection system.
+This is your first real-world streaming application with Apache Kafka and Python — a real-time transaction fraud detection system.
 
-This is the supporting repository for the blog post: [Building Your First Real-World Kafka Streaming Application in Python](https://blog.florimondmanca.com/building-your-first-real-world-kafka-streaming-application-in-python).
+This is the supporting repository for my blog post: [Building A Kafka Streaming Fraud Detection System In Python](https://blog.florimondmanca.com/building-a-kafka-streaming-fraud-detection-system-in-python).
 
 ## Install
 
@@ -22,7 +22,7 @@ $ docker-compose -f docker-compose.kafka.yml up
 $ docker-compose -f docker-compose.kafka.yml logs -f broker | grep "started"
 ```
 
-- Start the transaction producer and the fraud detection consumer:
+- Start the transaction generator and the fraud detector:
 
 ```bash
 $ docker-compose up
@@ -30,14 +30,20 @@ $ docker-compose up
 
 ## Usage
 
-- Show the stream of messages in the `transactions` topic (optionally add `--from-beginning`):
+Show a stream of transactions in the topic `T` (optionally add `--from-beginning`):
 
 ```bash
-$ docker-compose -f docker-compose.kafka.yml exec kafka-console-consumer --bootstrap-server localhost:9092 --topic transactions
+$ docker-compose -f docker-compose.kafka.yml exec kafka-console-consumer --bootstrap-server localhost:9092 --topic T
 ```
 
-- Show the stream of suspicious transactions:
+Topics:
 
-```
-$ docker-compose logs -f detector
+- `queuing.transactions`: raw generated transactions
+- `streaming.transactions.legit`: legit transactions
+- `streaming.transactions.fraud`: suspicious transactions
+
+Example transaction message:
+
+```json
+{"source": "yGfZ1Xa6k1r0", "target": "N5RvY7RO5sQF", "amount": 217.46, "currency": "EUR"}
 ```
