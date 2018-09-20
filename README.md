@@ -1,31 +1,37 @@
 # Kafka Fraud Detector
 
-This is your first real-world streaming application with Apache Kafka and Python — a real-time transaction fraud detection system.
-
-This is the supporting repository for my blog post: [Building A Kafka Streaming Fraud Detection System In Python](https://blog.florimondmanca.com/building-a-kafka-streaming-fraud-detection-system-in-python).
+This is the supporting repository for my blog post: [Building A Streaming Fraud Detection System With Kafka And Python](https://blog.florimondmanca.com/building-a-streaming-fraud-detection-system-with-kafka-and-python).
 
 ## Install
 
-This fraud detection system is fully containerised. You will need [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/) to run it, but no other installation step is required.
+This fraud detection system is fully containerised. You will need [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/) to run it.
+
+You simply need to create a Docker network called `kafka-network` to enable communication between the Kafka cluster and the apps:
+
+```bash
+$ docker network create kafka-network
+```
+
+All set!
 
 ## Quickstart
 
-- Spin up your local single-node Kafka cluster:
+- Spin up the local single-node Kafka cluster (will run in the background):
 
 ```bash
-$ docker-compose -f docker-compose.kafka.yml up
+$ docker-compose -f docker-compose.kafka.yml up -d
 ```
 
-- Check the cluster is up and running:
+- Check the cluster is up and running (wait for "started" to show up):
 
 ```bash
 $ docker-compose -f docker-compose.kafka.yml logs -f broker | grep "started"
 ```
 
-- Start the transaction generator and the fraud detector:
+- Start the transaction generator and the fraud detector (will run in the background):
 
 ```bash
-$ docker-compose up
+$ docker-compose up -d
 ```
 
 ## Usage
@@ -46,4 +52,24 @@ Example transaction message:
 
 ```json
 {"source": "yGfZ1Xa6k1r0", "target": "N5RvY7RO5sQF", "amount": 217.46, "currency": "EUR"}
+```
+
+## Teardown
+
+To stop the transaction generator and fraud detector:
+
+```bash
+$ docker-compose down
+```
+
+To stop the Kafka cluster (use `down`  instead to also remove contents of the topics):
+
+```bash
+$ docker-compose -f docker-compose.kafka.yml stop
+```
+
+To remove the Docker network:
+
+```bash
+$ docker network rm kafka-network
 ```
