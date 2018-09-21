@@ -1,5 +1,9 @@
 # Kafka Fraud Detector
 
+[![Kafka](https://img.shields.io/badge/streaming_platform-kafka-black.svg?style=flat-square)](https://kafka.apache.org)
+[![Confluent](https://img.shields.io/badge/docker_images-confluent-orange.svg?style=flat-square)](https://docs.confluent.io/current/installation/docker/docs/index.html)
+[![Python](https://img.shields.io/badge/python-3.5+-blue.svg?style=flat-square)](https://www.python.org)
+
 This is the supporting repository for my blog post: [Building A Streaming Fraud Detection System With Kafka And Python](https://blog.florimondmanca.com/building-a-streaming-fraud-detection-system-with-kafka-and-python).
 
 ## Install
