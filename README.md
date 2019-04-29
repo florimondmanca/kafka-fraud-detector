@@ -43,7 +43,7 @@ $ docker-compose up -d
 Show a stream of transactions in the topic `T` (optionally add `--from-beginning`):
 
 ```bash
-$ docker-compose -f docker-compose.kafka.yml exec kafka-console-consumer --bootstrap-server localhost:9092 --topic T
+$ docker-compose -f docker-compose.kafka.yml exec broker kafka-console-consumer --bootstrap-server localhost:9092 --topic T
 ```
 
 Topics:
